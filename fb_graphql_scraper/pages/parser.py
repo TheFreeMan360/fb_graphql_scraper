@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-import pandas as pd
-from seleniumwire.utils import decode
 import json
+import pandas as pd
+
+from seleniumwire.utils import decode
+
 from fb_graphql_scraper.utils.utils import *
 
 
@@ -15,7 +17,8 @@ class RequestsParser(object):
         self.author_id_list = []
         self.author_id_list2 = []
         self.reaction_names = ["讚", "哈", "怒", "大心", "加油", "哇", "嗚"]
-        self.en_reaction_names = ["like", "haha", "angry", "love", "care", "sorry", "wow"]
+        self.en_reaction_names = ["like", "haha",
+                                  "angry", "love", "care", "sorry", "wow"]
 
     def get_graphql_body_content(self, req_response, req_url):
         target_url = "https://www.facebook.com/api/graphql/"
@@ -77,7 +80,8 @@ class RequestsParser(object):
 
     def process_reactions(self, reactions_in):
         reaction_names = self.reaction_names
-        en_reaction_names = self.en_reaction_names # if you are in U.S, use self.en_reaction_names
+        # if you are in U.S, use self.en_reaction_names
+        en_reaction_names = self.en_reaction_names
         reaction_hash = {}
         for each_react in reactions_in:
             reaction_hash[each_react['node']['localized_name']

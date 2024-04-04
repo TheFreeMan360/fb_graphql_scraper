@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
-from fb_graphql_scraper.utils.locator import *
+import time
+
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.common.keys import Keys
-import time
+
+from fb_graphql_scraper.pages.locator import *
 
 
 class PageOptional(object):
@@ -104,7 +106,7 @@ class PageOptional(object):
     def click_reject_login_button(self):
         try:
             reject_login_button = WebDriverWait(self.driver, 10).until(
-            EC.visibility_of_element_located((self.locator.CLOSELOGIN)))
+                EC.visibility_of_element_located((self.locator.CLOSELOGIN)))
             reject_login_button.click()
         except Exception as e:
             print(f"Click reject button failed, message:{e}")
