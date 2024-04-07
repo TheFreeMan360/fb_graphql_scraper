@@ -1,8 +1,9 @@
+# -*- coding: utf-8 -*-
 from dataclasses import dataclass, field
 
 
 @dataclass
-class PostRecord:
+class PostRecord(object):
     # self.res = {
     #     "post_caption": [],
     #     "post_date": [],
