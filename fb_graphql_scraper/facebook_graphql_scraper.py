@@ -6,14 +6,15 @@ from tqdm import tqdm, trange
 from IPython.display import display
 from seleniumwire.utils import decode
 
-from fb_graphql_scraper.base.base_page import *
-from fb_graphql_scraper.pages.page_optional import *
-from fb_graphql_scraper.pages.locator import *
+# from fb_graphql_scraper.drivers.base_page import *
+from fb_graphql_scraper.drivers.driver_factory import DriverFactory
+from fb_graphql_scraper.page_actions.page_actions import *
+from fb_graphql_scraper.page_actions.page_element_locator import *
 from fb_graphql_scraper.utils.utils import *
-from fb_graphql_scraper.pages.parser import RequestsParser
+from fb_graphql_scraper.parsers.parser import RequestsParser
 
 
-class FacebookGraphqlScraper():
+class FacebookGraphqlScraper(object):
     def __init__(self, url="https://www.facebook.com/", fb_account: str = None, pwd: str = None, driver_path: str = None):
         # super().__init__(url=url, fb_account=fb_account, pwd=pwd, driver_path=driver_path)
         self.fb_account = fb_account
@@ -25,8 +26,10 @@ class FacebookGraphqlScraper():
         """>> Description: Auto login account or click "X" button to continue, 
         but some account can't not be display info if you don't login account
         >> Args: url (_str_): target user which you want to collect data."""
-        self.base_page = BasePage(driver_path=driver_path)
-        self.page_optional = PageOptional(
+        # self.base_page = BasePage(driver_path=driver_path)
+        self.base_page = DriverFactory.get_driver(
+            browser="edge", driver_path=driver_path)
+        self.page_optional = PageActions(
             url_in=self.url,
             driver=self.base_page.driver,
             fb_account=self.fb_account,

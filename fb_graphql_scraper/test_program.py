@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 # %%
-import os
 from fb_graphql_scraper.facebook_graphql_scraper import FacebookGraphqlScraper as fb_graphql_scraper
 from dotenv import load_dotenv
+
+
+# %%
 
 """
 # ## Load account info
